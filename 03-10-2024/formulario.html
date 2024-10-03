@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Viajeros - Aerolínea</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Qatar_Airways_Logo.png/1200px-Qatar_Airways_Logo.png" alt="Logo de la Aerolínea" class="logo">
+        <h2>Registro de Viajeros</h2><br>
+        <h3>Identificación</h3><br>
+        <form id="registroForm" onsubmit="return validar()">
+            <div class="form-group">
+                <label for="primerNombre">Primer Nombre:</label>
+                <input type="text" id="primerNombre" name="primerNombre">
+            </div>
+            <div class="form-group">
+                <label for="segundoNombre">Segundo Nombre:</label>
+                <input type="text" id="segundoNombre" name="segundoNombre">
+            </div>
+            <div class="form-group">
+                <label for="primerApellido">Primer Apellido:</label>
+                <input type="text" id="primerApellido" name="primerApellido">
+            </div>
+            <div class="form-group">
+                <label for="segundoApellido">Segundo Apellido:</label>
+                <input type="text" id="segundoApellido" name="segundoApellido">
+            </div>
+            <div class="form-group">
+                <label for="contacto">Contacto:</label>
+                <input type="tel" id="contacto" name="contacto">
+            </div>
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" name="contraseña" maxlength="5">
+            </div>
+            <div class="form-group">
+                <label for="confirmarContraseña">Confirmar Contraseña:</label>
+                <input type="password" id="confirmarContraseña" name="confirmarContraseña" maxlength="5">
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        function validar() {
+            const primerNombre = document.getElementById('primerNombre').value.trim();
+            const segundoNombre = document.getElementById('segundoNombre').value.trim();
+            const primerApellido = document.getElementById('primerApellido').value.trim();
+            const segundoApellido = document.getElementById('segundoApellido').value.trim();
+            const contacto = document.getElementById('contacto').value.trim();
+            const contraseña = document.getElementById('contraseña').value;
+            const confirmarContraseña = document.getElementById('confirmarContraseña').value;
+
+            if (primerNombre === "") {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El campo "Primer Nombre" es obligatorio.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false; 
+            }
+            else if (segundoNombre === "") {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El campo "segundo Nombre" es obligatorio.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false;
+            }
+            else if (primerApellido === "") {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El campo "Primer Apellido" es obligatorio.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false;
+            }
+            else if (segundoApellido === "") {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El campo "segundo Apellido" es obligatorio.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false;
+            }
+            else if (contacto === "") {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'El campo "Contacto" es obligatorio.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false; 
+            }
+            else if (contraseña.length < 5) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Debes completar este campo con cinco digitos.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false; 
+            }
+            else if (contraseña !== confirmarContraseña) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Las contraseñas no coinciden.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+                return false; 
+            }
+            else {
+                Swal.fire({
+                    title: 'Registro exitoso',
+                    text: '¡Tu información ha sido enviada correctamente!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    timer: 10000, 
+                    timerProgressBar: true 
+                });
+            }
+            return false; 
+        }          
+    </script>
+</body>
+</html>
